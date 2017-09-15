@@ -32,6 +32,8 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
+  gem "rubocop", require: false
+  gem "onkcop", require: false
 end
 
 group :test do
