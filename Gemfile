@@ -15,10 +15,13 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
+  gem "factory_girl_rails"
+  gem "faker"
   gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails"
   gem "pry-stack_explorer"
+  gem "rspec-rails"
 end
 
 group :development do
@@ -31,6 +34,7 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", git: "https://github.com/thoughtbot/shoulda-matchers.git", branch: "rails-5"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
