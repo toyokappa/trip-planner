@@ -16,7 +16,7 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     if @plan.save
-      redirect_to plan_path(@plan), notice: "登録しました！"
+      redirect_to plan_path(@plan), notice: t(:register_success, scope: :flash)
     else
       @plan.spots.build
       render "new"
@@ -29,7 +29,7 @@ class PlansController < ApplicationController
 
   def update
     if @plan.update(plan_params)
-      redirect_to plan_path(@plan), notice: "更新しました！"
+      redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
       @plan.spots.build
       render "edit"
@@ -38,7 +38,7 @@ class PlansController < ApplicationController
 
   def destroy
     @plan.destroy!
-    redirect_to root_url, notice: "削除しました！"
+    redirect_to root_url, notice: t(:delete_success, scope: :flash)
   end
 
   private
