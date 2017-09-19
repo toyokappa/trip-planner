@@ -1,0 +1,46 @@
+version: '2'
+services:
+  app:
+    build: .
+    environment:
+      RAILS_ENV: development
+      TZ: Asia/Tokyo
+      APP_HOST: http://localhost:13000
+    ports:
+      - '13000:3000'
+    volumes:
+      - .:/usr/src/trip-planner
+    links:
+      - postgresql-development
+      - postgresql-test
+    command:
+      bin/yarn install && bin/rails s
+  postgresql-development:
+    image: postgres
+    environment:
+      POSTGRES_ROOT_PASSWORD: pass
+      POSTGRES_USER: trip-planner_development
+      POSTGRES_PASSWORD: trip-planner_development
+      POSTGRES_DATABASE: trip-planner_development
+      TZ: Asia/Tokyo
+    expose:
+      - '3306'
+    volumes:
+      - postgresql-development-data:/var/lib/postgres
+  postgresql-test:
+    image: postgres
+    environment:
+      POSTGRES_ROOT_PASSWORD: pass
+      POSTGRES_USER: trip-planner_development
+      POSTGRES_PASSWORD: trip-planner_development
+      POSTGRES_DATABASE: trip-planner_rspec
+      TZ: Asia/Tokyo
+    expose:
+      - '3306'
+    volumes:
+      - postgresql-test-data:/var/lib/postgres
+volumes:
+  postgresql-development-data:
+    driver: local
+  postgresql-test-data:
+    driver: local
