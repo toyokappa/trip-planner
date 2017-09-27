@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170921042645) do
   enable_extension "plpgsql"
 
   create_table "plans", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.boolean "published", default: false
     t.integer "view_count", default: 0
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170921042645) do
   end
 
   create_table "spots", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.string "address"
     t.decimal "lat", precision: 10, scale: 10
